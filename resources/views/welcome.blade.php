@@ -110,8 +110,23 @@
     <div class="header">
         <h1>紙とネットを繋ぐ求人</h1>
         <div class="buttons">
-            <a href="#">会員登録</a>
-            <a href="#">ログイン</a>
+            <!-- 非ログイン時の表示 -->
+            @guest
+                <a href="{{ route('register') }}" class="btn btn-primary">会員登録</a>
+                <a href="{{ route('login') }}" class="btn btn-primary">ログイン</a>
+            @endguest
+
+            <!-- ログイン時の表示 -->
+            @auth
+                <a href="{{ route('logout') }}"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                   class="btn btn-primary">
+                    ログアウト
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            @endauth
         </div>
     </div>
 
