@@ -23,6 +23,9 @@ Route::get('/home', function () {
     return view('home');
 })->name('home');
 
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -37,7 +40,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('post.destroy');
 
     Route::get('/myposts', [PostController::class, 'myPosts'])->name('myposts');
+
+
 });
+
+
 
 require __DIR__.'/auth.php';
 
