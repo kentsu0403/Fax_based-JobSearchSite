@@ -27,6 +27,8 @@ Route::get('/admin', function () {
     return view('admin.dashboard');
 });
 
+Route::view('/admin/add-company', 'admin.add-company');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
