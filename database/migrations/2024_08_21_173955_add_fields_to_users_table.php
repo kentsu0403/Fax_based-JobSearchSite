@@ -12,11 +12,15 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('name')->nullable();  // 名前
-            $table->string('phone')->nullable();  // 電話番号（任意）
-            $table->date('date_of_birth')->nullable();  // 生年月日（任意）
+            // すでに存在する `name` カラムを追加しないようにする
+            // $table->string('name')->nullable();  // これをコメントアウトまたは削除
+    
+            // 他のカラムの追加（もし必要であれば）
+            $table->string('phone')->nullable();
+            $table->date('date_of_birth')->nullable();
         });
     }
+      
     
     public function down()
     {
