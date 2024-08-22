@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\ApplicationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,14 @@ Route::get('/home', function () {
 })->name('home');
 
 Route::get('/jobs/{id}', [JobController::class, 'show'])->name('jobs.show');
+
+Route::get('/apply/{jobId}', [ApplicationController::class, 'create'])->name('applications.create');
+
+Route::post('/apply', [ApplicationController::class, 'store'])->name('applications.store');
+
+Route::get('/application/success', function () {
+    return '応募が完了しました。';
+})->name('application.success');
 
 Route::get('/admin', function () {
     return view('admin.dashboard');
