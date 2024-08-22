@@ -59,7 +59,8 @@
             <p><strong>応募資格:</strong> {{ $jobDetail['requirements'] }}</p>
         </div>
 
-        <a href="#" class="apply-button">応募する</a>
+        <a href="{{ route('applications.create', ['jobId' => $id]) }}" class="apply-button">応募する</a>
+
     </div>
 </body>
 </html>

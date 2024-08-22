@@ -8,7 +8,6 @@ class JobController extends Controller
 {
     public function show($id)
     {
-        // サンプルの求人データ
         $jobs = [
             1 => [
                 'title' => 'ウェブサイト運営アシスタント',
@@ -35,14 +34,14 @@ class JobController extends Controller
                 'requirements' => '丁寧な対応ができる方。基本的な電話対応ができる方。',
             ],
         ];
-
-        // IDに対応する求人データを取得
+    
         if (array_key_exists($id, $jobs)) {
             $jobDetail = $jobs[$id];
         } else {
             abort(404); // 該当するIDがない場合は404エラー
         }
-
-        return view('jobs.show', compact('jobDetail'));
+    
+        // Bladeテンプレートに$jobIdも渡すようにする
+        return view('jobs.show', compact('jobDetail', 'id'));
     }
 }
