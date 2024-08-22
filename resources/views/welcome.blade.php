@@ -104,6 +104,22 @@
             margin: 0;
             font-size: 20px;
         }
+        .user-name {
+            margin-right: 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .user-name:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -118,9 +134,12 @@
 
             <!-- ログイン時の表示 -->
             @auth
+                <!-- 名前をボタン風に表示してクリック可能に -->
+                <a href="#" class="user-name">{{ Auth::user()->name }}</a>
+
                 <a href="{{ route('logout') }}"
-                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                   class="btn btn-primary">
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                class="btn btn-primary">
                     ログアウト
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -129,6 +148,7 @@
             @endauth
         </div>
     </div>
+
 
     <div class="container">
         <p>ネットでの求人を出せておらず、求人が集まらないという課題を解決する！</p>
