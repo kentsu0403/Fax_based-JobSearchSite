@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class SampleSeeder extends Seeder
 {
@@ -56,5 +57,39 @@ class SampleSeeder extends Seeder
             'phone' => '080-1234-5678',
             'date_of_birth' => '1990-01-01',
         ]);
+
+        User::create([
+            'name' => 'Relic 太郎',
+            'email' => 'taro.relic@example.com',
+            'password' => Hash::make('password'), // パスワードのハッシュ化
+            'phone' => '080-8765-4321',
+            'date_of_birth' => '1995-05-05',
+        ]);
+
+        // 応募情報をapplicationsテーブルに保存
+        $applicationId = DB::table('applications')->insertGetId([
+            'project_id' => 1,  // 応募する案件のID
+            'applicant_name' => '山田 太郎',
+            'applicant_email' => 'taro.yamada@example.com',
+            'applicant_phone' => '080-1234-5678',
+            'applicant_birthdate' => '1990-01-01',
+            'notes' => '面接日はできるだけ午前中を希望します。',
+            'application_date' => Carbon::now(),
+        ]);
+
+        // 希望日程をpreferred_datesテーブルに保存
+        DB::table('preferred_dates')->insert([
+            'application_id' => $applicationId,
+            'preferred_date_1' => '2024-08-25',
+            'preferred_date_2' => '2024-08-26',
+            'preferred_date_3' => '2024-08-27',
+        ]);
+
+        // applicant_applicationテーブルに関連情報を保存
+        DB::table('applicant_application')->insert([
+            'applicant_id' => 1, // ここは実際にapplicant_idが必要ならそのIDを設定
+            'application_id' => $applicationId,
+        ]);
+
     }
 }
