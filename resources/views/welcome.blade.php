@@ -141,16 +141,13 @@
         </div>
 
         <div class="job-list-container">
-            <div class="job-card">
-                <h3><a href="{{ route('jobs.show', ['id' => 1]) }}">サンプル案件 1</a></h3>
-            </div>
-            <div class="job-card">
-                <h3><a href="{{ route('jobs.show', ['id' => 2]) }}">サンプル案件 2</a></h3>
-            </div>
-            <div class="job-card">
-                <h3><a href="{{ route('jobs.show', ['id' => 3]) }}">サンプル案件 3</a></h3>
-            </div>
+    @foreach($jobs as $job)
+        <div class="job-card">
+            <h3><a href="{{ route('jobs.show', ['id' => $job->project_id]) }}">{{ $job->project_name }}</a></h3>
+            <p>{{ $job->project_details }}</p>
         </div>
+    @endforeach
+</div>
     </div>
 </body>
 </html>

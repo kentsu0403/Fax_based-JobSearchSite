@@ -17,9 +17,7 @@ use App\Http\Controllers\ApplicationController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [JobController::class, 'index'])->name('jobs.index');
 
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 Route::post('/register', [RegisteredUserController::class, 'store']);
