@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $jobDetail['title'] }}</title>
+    <title>{{ $jobDetail->project_name }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -48,19 +48,21 @@
 </head>
 <body>
     <div class="container">
-        <h1>{{ $jobDetail['title'] }}</h1>
+        <h1>{{ $jobDetail->project_name }}</h1>
         
         <div class="job-info">
-            <p><strong>求人タイトル:</strong> {{ $jobDetail['title'] }}</p>
-            <p><strong>会社名:</strong> {{ $jobDetail['company'] }}</p>
-            <p><strong>勤務地:</strong> {{ $jobDetail['location'] }}</p>
-            <p><strong>給与:</strong> {{ $jobDetail['salary'] }}</p>
-            <p><strong>仕事内容:</strong> {{ $jobDetail['description'] }}</p>
-            <p><strong>応募資格:</strong> {{ $jobDetail['requirements'] }}</p>
+            <!-- 会社名の取得 -->
+            @if($jobDetail->companies->isNotEmpty())
+                <p><strong>会社名:</strong> {{ $jobDetail->companies->first()->company_name }}</p>
+            @else
+                <p><strong>会社名:</strong> 会社情報が見つかりません</p>
+            @endif
+            
+            <p><strong>案件名:</strong> {{ $jobDetail->project_name }}</p>
+            <p><strong>案件の詳細情報:</strong> {{ $jobDetail->project_details }}</p>
         </div>
 
         <a href="{{ route('applications.create', ['jobId' => $id]) }}" class="apply-button">応募する</a>
-
     </div>
 </body>
 </html>
