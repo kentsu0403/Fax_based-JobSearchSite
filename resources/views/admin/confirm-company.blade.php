@@ -1,10 +1,10 @@
-<!-- resources/views/dashboard.blade.php -->
+<!-- resources/views/admin/confirm-company.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>管理者用トップページ</title>
+    <title>会社検索結果</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -47,11 +47,13 @@
     </style>
 </head>
 <body>
-    <h1>管理者用トップページ</h1>
+    <h1>会社検索結果</h1>
     <div class="button-container">
-        <a href="/admin/add-company" class="button">会社の追加</a>
-        <a href="/admin/add-job" class="button">案件の追加</a>
-        <a href="/admin/confirm-company" class="button">会社/案件情報の確認</a>
+        <a href="#" class="button">ダミーデータセット 1</a>
+        <a href="#" class="button">ダミーデータセット 2</a>
+        <a href="#" class="button">ダミーデータセット 3</a>
+        <a href="#" class="button">ダミーデータセット 4</a>
+        <a href="#" class="button">ダミーデータセット 5</a>
     </div>
 </body>
 </html>
