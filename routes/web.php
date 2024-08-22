@@ -48,6 +48,11 @@ Route::get('/admin/add-job', function () {
     return view('admin.add-job');
 });
 
+Route::get('/admin/confirm-company', function () {
+    return view('admin.confirm-company');
+});
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
