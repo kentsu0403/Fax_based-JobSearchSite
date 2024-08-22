@@ -135,7 +135,7 @@
             <!-- ログイン時の表示 -->
             @auth
                 <!-- 名前をボタン風に表示してクリック可能に -->
-                <a href="#" class="user-name">{{ Auth::user()->name }}</a>
+                <a href="{{ route('application.index') }}" class="user-name">{{ Auth::user()->name }}</a>
 
                 <a href="{{ route('logout') }}"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
