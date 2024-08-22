@@ -109,6 +109,9 @@
         <form action="{{ route('applications.store') }}" method="POST">
             @csrf
 
+            <!-- jobIdをhiddenフィールドとして追加 -->
+            <input type="hidden" name="jobId" value="{{ $jobId }}">
+
             <!-- 希望日程 -->
             <div class="form-group">
                 <label for="preferred_date_1">第1希望日程:</label>

@@ -75,6 +75,8 @@ class SampleSeeder extends Seeder
             'applicant_birthdate' => '1990-01-01',
             'notes' => '面接日はできるだけ午前中を希望します。',
             'application_date' => Carbon::now(),
+            'created_at' => Carbon::now(),  // 追加
+            'updated_at' => Carbon::now(),  // 追加
         ]);
 
         // 希望日程をpreferred_datesテーブルに保存

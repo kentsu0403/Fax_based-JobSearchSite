@@ -36,6 +36,11 @@ Route::get('/application/success', function () {
     return '応募が完了しました。';
 })->name('application.success');
 
+Route::post('/applications', [ApplicationController::class, 'store'])->name('applications.store');
+Route::get('/applications', [ApplicationController::class, 'index'])->name('applications.index');
+
+Route::get('/my-applications', [ApplicationController::class, 'index'])->name('applications.index');
+
 Route::get('/admin', function () {
     return view('admin.dashboard');
 });

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('applicant_birthdate')->nullable();
             $table->text('notes')->nullable();
             $table->timestamp('application_date')->useCurrent();
+            $table->timestamps();  // この行を追加
 
             // 外部キー制約
             $table->foreign('project_id')->references('project_id')->on('projects')->onDelete('cascade');
