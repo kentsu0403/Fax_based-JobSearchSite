@@ -37,7 +37,7 @@ Route::get('/application/success', function () {
 })->name('application.success');
 
 Route::post('/applications', [ApplicationController::class, 'store'])->name('applications.store');
-Route::get('/applications', [ApplicationController::class, 'index'])->name('applications.index');
+Route::get('/applications', [ApplicationController::class, 'index'])->name('application.index');
 
 Route::get('/my-applications', [ApplicationController::class, 'index'])->name('applications.index');
 

@@ -67,8 +67,8 @@ class ApplicationController extends Controller
         ]);
     
         // 応募完了後のリダイレクト
-        //return redirect()->route('applications.index'); // 応募一覧ページにリダイレクト
-        return redirect()->route('application.success'); // 適切なルートに変更してください
+        return redirect()->route('application.index'); // 応募一覧ページにリダイレクト
+        //return redirect()->route('application.success'); // 適切なルートに変更してください
     }
     
 
@@ -76,8 +76,10 @@ class ApplicationController extends Controller
     // 応募一覧ページの表示メソッド
     public function index()
     {
-        $applications = Application::where('applicant_email', Auth::user()->email)->get();
-
-        return view('applications.index', compact('applications'));
+        $applications = Application::with('project')
+            ->where('applicant_email', Auth::user()->email)
+            ->get();
+    
+        return view('application.index', compact('applications'));
     }
 }

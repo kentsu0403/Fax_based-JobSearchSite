@@ -9,6 +9,7 @@ class Application extends Model
 {
     use HasFactory;
 
+    // フィールドのマスアサインメントを設定
     protected $fillable = [
         'project_id',
         'applicant_name',
@@ -18,4 +19,11 @@ class Application extends Model
         'notes',
         'application_date',
     ];
+
+    // Projectとのリレーションを定義
+    public function project()
+    {
+        return $this->belongsTo(Project::class, 'project_id');
+    }
+    
 }
