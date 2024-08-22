@@ -142,13 +142,13 @@
 
         <div class="job-list-container">
             <div class="job-card">
-                <h3>サンプル案件 1</h3>
+                <h3><a href="{{ route('jobs.show', ['id' => 1]) }}">サンプル案件 1</a></h3>
             </div>
             <div class="job-card">
-                <h3>サンプル案件 2</h3>
+                <h3><a href="{{ route('jobs.show', ['id' => 2]) }}">サンプル案件 2</a></h3>
             </div>
             <div class="job-card">
-                <h3>サンプル案件 3</h3>
+                <h3><a href="{{ route('jobs.show', ['id' => 3]) }}">サンプル案件 3</a></h3>
             </div>
         </div>
     </div>

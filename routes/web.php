@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,8 @@ Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::get('/home', function () {
     return view('home');
 })->name('home');
+
+Route::get('/jobs/{id}', [JobController::class, 'show'])->name('jobs.show');
 
 Route::get('/admin', function () {
     return view('admin.dashboard');
