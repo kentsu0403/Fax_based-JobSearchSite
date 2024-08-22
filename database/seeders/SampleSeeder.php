@@ -5,8 +5,9 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Company;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Hash;
 
 class SampleSeeder extends Seeder
 {
@@ -43,10 +44,17 @@ class SampleSeeder extends Seeder
 
         // Company-Project Relationship Table
         DB::table('company_project')->insert([
-            ['company_id' => $company1->id, 'project_id' => $project1->id],
-            ['company_id' => $company1->id, 'project_id' => $project2->id],
-            ['company_id' => $company2->id, 'project_id' => $project3->id],
+            ['company_id' => $company1->company_id, 'project_id' => $project1->project_id],
+            ['company_id' => $company1->company_id, 'project_id' => $project2->project_id],
+            ['company_id' => $company2->company_id, 'project_id' => $project3->project_id],
+        ]);
+
+        User::create([
+            'name' => '山田 太郎',
+            'email' => 'taro.yamada@example.com',
+            'password' => Hash::make('password'), // パスワードのハッシュ化
+            'phone' => '080-1234-5678',
+            'date_of_birth' => '1990-01-01',
         ]);
     }
 }
-
