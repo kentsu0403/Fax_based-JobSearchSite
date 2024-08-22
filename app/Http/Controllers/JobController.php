@@ -15,18 +15,15 @@ class JobController extends Controller
         // 取得したデータをビューに渡す
         return view('welcome', compact('jobs'));
     }
-    
     public function show($id)
     {
-        // Projectモデルを使用してデータベースから該当する案件を取得
-        $jobDetail = Project::find($id);
-
-        // 該当するIDがない場合は404エラーを返す
+        $jobDetail = Project::with('companies')->find($id);
+    
         if (!$jobDetail) {
             abort(404); 
         }
-
-        // Bladeテンプレートに$jobDetailと$idを渡す
+    
         return view('jobs.show', compact('jobDetail', 'id'));
     }
+    
 }

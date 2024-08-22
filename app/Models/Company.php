@@ -9,9 +9,17 @@ class Company extends Model
 {
     use HasFactory;
 
-    // Projectモデルとの多対多のリレーションを定義
+    // プライマリキーを 'company_id' に設定
+    protected $primaryKey = 'company_id';
+
+    // Eloquent にプライマリキーが自動増分であることを知らせる
+    public $incrementing = true;
+
+    // プライマリキーのタイプを整数型に設定
+    protected $keyType = 'int';
+
     public function projects()
     {
-        return $this->belongsToMany(Project::class);
+        return $this->belongsToMany(Project::class, 'company_project', 'company_id', 'project_id');
     }
 }
