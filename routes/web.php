@@ -51,6 +51,9 @@ Route::view('/admin/add-company', 'admin.add-company');
 Route::post('/admin/add-company', [CompanyController::class, 'store'])->name('admin.company.store');
 
 
+
+
+
 Route::get('/admin/add-job', [ProjectController::class, 'create'])->name('admin.project.create');
 
 Route::post('/admin/add-job', [ProjectController::class, 'store'])->name('admin.project.store');
