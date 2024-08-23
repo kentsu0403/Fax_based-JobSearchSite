@@ -1,4 +1,3 @@
-<!-- resources/views/admin/add-job.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +23,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: calc(100vh - 60px); /* Adjust height to center the form */
-            padding-bottom: 60px; /* Space for the button */
+            height: calc(100vh - 60px);
+            padding-bottom: 60px;
         }
         form {
             display: inline-block;
@@ -37,14 +36,14 @@
             margin: 10px 0 5px;
             font-size: 16px;
         }
-        select, input[type="text"] {
+        select, input[type="text"], textarea {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
             font-size: 16px;
         }
-        input[type="text"]#description {
-            height: 100px; /* Increase the height of the "公開情報の記載" field */
+        textarea {
+            height: 100px;
         }
         input[type="submit"] {
             background-color: #007bff;
@@ -65,20 +64,22 @@
 <body>
     <h1>案件の追加</h1>
     <div class="form-container">
-        <form action="#" method="post">
-            <label for="company_name">会社名:</label>
-            <select id="company_name" name="company_name" required>
+        <form action="{{ route('admin.project.store') }}" method="POST">
+            @csrf
+            <label for="company_id">会社名:</label>
+            <select id="company_id" name="company_id" required>
                 <option value="" disabled selected>会社を選択してください</option>
-                <option value="Company A">Company A</option>
-                <option value="Company B">Company B</option>
-                <option value="Company C">Company C</option>
+                <!-- 会社リストを動的に表示する -->
+                @foreach($companies as $company)
+                    <option value="{{ $company->company_id }}">{{ $company->company_name }}</option>
+                @endforeach
             </select>
 
             <label for="project_name">案件名:</label>
             <input type="text" id="project_name" name="project_name" required>
 
-            <label for="description">公開情報の記載:</label>
-            <input type="text" id="description" name="description" required>
+            <label for="project_details">公開情報の記載:</label>
+            <textarea id="project_details" name="project_details" required></textarea>
 
             <input type="submit" value="案件を公開する">
         </form>
