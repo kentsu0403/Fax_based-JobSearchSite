@@ -69,7 +69,8 @@
 <body>
     <h1>会社の追加</h1>
     <div class="form-container">
-        <form id="addCompanyForm" action="/admin/add-job" method="get">
+        <form id="addCompanyForm" action="{{ route('admin.company.store') }}" method="POST">
+            @csrf
             <label for="company_name">会社名:</label>
             <input type="text" id="company_name" name="company_name" required>
 
