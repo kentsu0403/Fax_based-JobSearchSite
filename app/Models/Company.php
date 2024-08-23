@@ -1,5 +1,6 @@
 <?php
 
+// Company.php
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,14 +10,11 @@ class Company extends Model
 {
     use HasFactory;
 
-    // プライマリキーを 'company_id' に設定
     protected $primaryKey = 'company_id';
-
-    // Eloquent にプライマリキーが自動増分であることを知らせる
     public $incrementing = true;
-
-    // プライマリキーのタイプを整数型に設定
     protected $keyType = 'int';
+
+    protected $fillable = ['company_name', 'contact_person', 'contact_phone'];
 
     public function projects()
     {

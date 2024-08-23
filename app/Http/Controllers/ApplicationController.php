@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Application;
+use App\Models\PreferredDate;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;  // ここを追加
+use Carbon\Carbon;  // Carbon も使っているのでこれも追加
 
 class ApplicationController extends Controller
 {
@@ -47,11 +52,34 @@ class ApplicationController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+    
+        // 応募情報をapplicationsテーブルに保存
+        $applicationId = DB::table('applications')->insertGetId([
+            'project_id' => $request->jobId,  // 応募する案件のIDを取得
+            'applicant_name' => 'Relic 太郎',  // 実際にはログイン中のユーザーの情報を使用
+            'applicant_email' => 'taro.relic@example.com', // 実際にはログイン中のユーザーの情報を使用
+            'applicant_phone' => '080-8765-4321',  // 実際にはログイン中のユーザーの情報を使用
+            'applicant_birthdate' => '1995-05-05',  // 実際にはログイン中のユーザーの情報を使用
+            'notes' => $request->notes,
+            'application_date' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+    
+        // 応募完了後のリダイレクト
+        return redirect()->route('application.index'); // 応募一覧ページにリダイレクト
+        //return redirect()->route('application.success'); // 適切なルートに変更してください
+    }
+    
 
-        // バリデーション成功後の処理をここに追加します
-        // 例えば、データベースに応募データを保存するなどの処理です
-
-        // 応募完了メッセージやリダイレクトを設定
-        return redirect()->route('application.success'); // ここは適切なルートに変更してください
+    
+    // 応募一覧ページの表示メソッド
+    public function index()
+    {
+        $applications = Application::with('project')
+            ->where('applicant_email', Auth::user()->email)
+            ->get();
+    
+        return view('application.index', compact('applications'));
     }
 }

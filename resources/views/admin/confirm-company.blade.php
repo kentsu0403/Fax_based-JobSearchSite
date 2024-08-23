@@ -1,4 +1,3 @@
-<!-- resources/views/admin/confirm-company.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +12,7 @@
             background-color: #f4f4f4;
             box-sizing: border-box;
             position: relative;
-            min-height: 100vh; /* Ensure the body takes full viewport height */
+            min-height: 100vh;
         }
         h1 {
             font-size: 28px;
@@ -22,38 +21,65 @@
             top: 20px;
             left: 20px;
         }
-        .button-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: calc(100vh - 60px); /* Adjust height to center the buttons */
-            margin-top: 60px; /* Adjust top margin to account for title */
+        .table-container {
+            margin-top: 80px;
+            width: 100%;
+            overflow-x: auto;
         }
-        .button {
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
             background-color: #007bff;
             color: white;
-            border: none;
-            cursor: pointer;
-            padding: 10px 20px;
-            font-size: 16px;
-            margin: 10px;
-            text-align: center;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .details-link {
+            color: #007bff;
             text-decoration: none;
         }
-        .button:hover {
-            background-color: #0056b3;
+        .details-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <h1>会社検索結果</h1>
-    <div class="button-container">
-        <a href="#" class="button">ダミーデータセット 1</a>
-        <a href="#" class="button">ダミーデータセット 2</a>
-        <a href="#" class="button">ダミーデータセット 3</a>
-        <a href="#" class="button">ダミーデータセット 4</a>
-        <a href="#" class="button">ダミーデータセット 5</a>
+    <div class="table-container">
+    <table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>会社名</th>
+            <th>連絡担当者</th>
+            <th>連絡先電話番号</th>
+            <th>詳細</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($companies as $company)
+            <tr>
+                <td>{{ $company->company_id }}</td>
+                <td>{{ $company->company_name }}</td>
+                <td>{{ $company->contact_person }}</td>
+                <td>{{ $company->contact_phone }}</td>
+                <td><a href="{{ route('admin.company.show', ['id' => $company->company_id]) }}" class="details-link">詳細を見る</a></td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+
     </div>
 </body>
 </html>

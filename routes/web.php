@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,11 @@ Route::get('/application/success', function () {
     return '応募が完了しました。';
 })->name('application.success');
 
+Route::post('/applications', [ApplicationController::class, 'store'])->name('applications.store');
+Route::get('/applications', [ApplicationController::class, 'index'])->name('application.index');
+
+Route::get('/my-applications', [ApplicationController::class, 'index'])->name('applications.index');
+
 Route::get('/admin', function () {
     return view('admin.dashboard');
 });
@@ -46,9 +52,12 @@ Route::get('/admin/add-job', function () {
     return view('admin.add-job');
 });
 
-Route::get('/admin/confirm-company', function () {
+/*Route::get('/admin/confirm-company', function () {
     return view('admin.confirm-company');
-});
+});*/
+Route::get('/admin/confirm-company', [CompanyController::class, 'index'])->name('admin.confirm-company');
+Route::get('/admin/company/{id}', [CompanyController::class, 'show'])->name('admin.company.show');
+
 
 
 
