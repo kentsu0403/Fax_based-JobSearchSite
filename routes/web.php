@@ -48,14 +48,13 @@ Route::get('/admin', function () {
 });
 
 Route::view('/admin/add-company', 'admin.add-company');
+Route::post('/admin/add-company', [CompanyController::class, 'store'])->name('admin.company.store');
 
-Route::get('/admin/add-job', function () {
-    return view('admin.add-job');
-});
 
-/*Route::get('/admin/confirm-company', function () {
-    return view('admin.confirm-company');
-});*/
+Route::get('/admin/add-job', [ProjectController::class, 'create'])->name('admin.project.create');
+
+Route::post('/admin/add-job', [ProjectController::class, 'store'])->name('admin.project.store');
+
 Route::get('/admin/confirm-company', [CompanyController::class, 'index'])->name('admin.confirm-company');
 Route::get('/admin/company/{id}', [CompanyController::class, 'show'])->name('admin.company.show');
 
