@@ -20,6 +20,12 @@ class CompanyController extends Controller
         $company = Company::findOrFail($id);
         return view('admin.show-company', ['company' => $company]);
     }
+
+    public function showProjects($id)
+    {
+        $company = Company::with('projects')->findOrFail($id);
+        return view('admin.company-projects', ['company' => $company, 'projects' => $company->projects]);
+    }
     
     
 }
