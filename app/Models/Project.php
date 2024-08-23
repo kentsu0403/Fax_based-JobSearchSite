@@ -15,8 +15,15 @@ class Project extends Model
 
     protected $fillable = ['project_name', 'project_details'];
 
+    // Companyとの多対多リレーション
     public function companies()
     {
         return $this->belongsToMany(Company::class, 'company_project', 'project_id', 'company_id');
+    }
+
+    // Applicationとのリレーション（1対多）
+    public function applications()
+    {
+        return $this->hasMany(Application::class, 'project_id', 'project_id');
     }
 }

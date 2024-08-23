@@ -71,7 +71,7 @@
         @foreach($companies as $company)
             <tr>
                 <td>{{ $company->company_id }}</td>
-                <td>{{ $company->company_name }}</td>
+                <td><a href="{{ route('admin.company.projects', ['id' => $company->company_id]) }}" class="details-link">{{ $company->company_name }}</a></td>
                 <td>{{ $company->contact_person }}</td>
                 <td>{{ $company->contact_phone }}</td>
                 <td><a href="{{ route('admin.company.show', ['id' => $company->company_id]) }}" class="details-link">詳細を見る</a></td>
