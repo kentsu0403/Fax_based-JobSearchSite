@@ -10,7 +10,11 @@
     <h1>{{ $company->company_name }} の案件一覧</h1>
     <ul>
         @foreach($projects as $project)
-            <li>{{ $project->project_name }}</li>
+            <li>
+                <a href="{{ route('admin.project.show', ['id' => $project->project_id]) }}">
+                    {{ $project->project_name }}
+                </a>
+            </li>
         @endforeach
     </ul>
 </body>
