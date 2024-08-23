@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,9 +52,12 @@ Route::get('/admin/add-job', function () {
     return view('admin.add-job');
 });
 
-Route::get('/admin/confirm-company', function () {
+/*Route::get('/admin/confirm-company', function () {
     return view('admin.confirm-company');
-});
+});*/
+Route::get('/admin/confirm-company', [CompanyController::class, 'index'])->name('admin.confirm-company');
+Route::get('/admin/company/{id}', [CompanyController::class, 'show'])->name('admin.company.show');
+
 
 
 
