@@ -9,6 +9,8 @@ class Application extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'application_id'; // 主キーを指定
+
     // フィールドのマスアサインメントを設定
     protected $fillable = [
         'project_id',
@@ -25,5 +27,10 @@ class Application extends Model
     {
         return $this->belongsTo(Project::class, 'project_id');
     }
-    
+
+    // PreferredDateとのリレーションを定義
+    public function preferredDates()
+    {
+        return $this->hasOne(PreferredDate::class, 'application_id', 'application_id');
+    }
 }

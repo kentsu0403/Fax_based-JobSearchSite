@@ -72,7 +72,9 @@
             <ul class="applicant-list">
                 @foreach($applications as $application)
                     <li>
-                        <span>{{ $application->applicant_name }}</span>
+                        <a href="{{ route('admin.application.show', ['id' => $application->application_id]) }}">
+                            <span>{{ $application->applicant_name }}</span>
+                        </a>
                         <span>{{ $application->applicant_email }}</span>
                     </li>
                 @endforeach

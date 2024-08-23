@@ -63,6 +63,9 @@ Route::get('/admin/company/{id}/projects', [CompanyController::class, 'showProje
 Route::get('/admin/project/{id}', [ProjectController::class, 'show'])->name('admin.project.show');
 
 
+Route::get('/admin/application/{id}', [ApplicationController::class, 'show'])->name('admin.application.show');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

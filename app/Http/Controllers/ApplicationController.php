@@ -82,4 +82,14 @@ class ApplicationController extends Controller
     
         return view('application.index', compact('applications'));
     }
+
+    public function show($id)
+    {
+        $application = Application::with('preferredDates')->findOrFail($id);
+    
+        return view('admin.application-show', [
+            'application' => $application,
+            'preferred_dates' => $application->preferredDates,
+        ]);
+    }    
 }
