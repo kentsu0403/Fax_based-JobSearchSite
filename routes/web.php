@@ -8,6 +8,9 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProjectController;
 
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\VoteController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,6 +70,15 @@ Route::get('/admin/project/{id}', [ProjectController::class, 'show'])->name('adm
 
 Route::get('/admin/application/{id}', [ApplicationController::class, 'show'])->name('admin.application.show');
 
+
+Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+Route::post('/vote', [VoteController::class, 'store'])->name('vote.store');
+
+// 投票結果表示用のルート
+Route::get('/news/{news_id}/results', [VoteController::class, 'index'])->name('news.results');
+
+Route::post('/news/{news_id}/chat', [ChatController::class, 'store']);
+Route::get('/news/{news_id}/chat', [ChatController::class, 'index']);
 
 
 Route::middleware('auth')->group(function () {
